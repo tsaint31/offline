@@ -28,9 +28,26 @@
   border-radius: 4px;
 }
 
+.button {
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
 .col-4 {
   border: 1px solid black;
   border-radius: 4px;
+}
+
+.col-2 {
+  border: 1px solid black;
+  border-radius: 4px;
+  text-align: center
+}
+
+.col-3 {
+  border: 1px solid black;
+  border-radius: 4px;
+  text-align: center
 }
 
 @keyframes App-logo-spin {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import { Button, Icon } from 'antd';
 
 class App extends Component {
 
@@ -16,16 +16,16 @@ class App extends Component {
     brand_8: '',
     brand_9: '',
     brand_10: '',
-    value_1: '',
-    value_2: '',
-    value_3: '',
-    value_4: '',
-    value_5: '',
-    value_6: '',
-    value_7: '',
-    value_8: '',
-    value_9: '',
-    value_10: '',
+    value_1: 0,
+    value_2: 0,
+    value_3: 0,
+    value_4: 0,
+    value_5: 0,
+    value_6: 0,
+    value_7: 0,
+    value_8: 0,
+    value_9: 0,
+    value_10: 0,
   };
 
   handleInputBrand = (brand_id, event) => {
@@ -35,13 +35,25 @@ class App extends Component {
   }
   handleInputBrandValue = (value_id, event) => {
     this.setState({
-      [value_id]: event.target.value
+      [value_id]: +1
     });
   }
+  addOne = (value_id, event) => {
+    this.setState(prevState => {
+      return {[value_id]: prevState[value_id] + 1 }
+   });
+  }
+
+  removeOne = (value_id, event) => {
+    this.setState(prevState => {
+      return {[value_id]: prevState[value_id] - 1 }
+   });
+  }
+
   saveFile = () => {
     // this.setState({ isSynchronizing: true });
-    const data = 
-    `${this.state.brand_1}: ${this.state.value_1}
+    const data =
+      `${this.state.brand_1}: ${this.state.value_1}
     ${this.state.brand_2}: ${this.state.value_2}
     ${this.state.brand_3}: ${this.state.value_3}
     ${this.state.brand_4}: ${this.state.value_4}
@@ -73,77 +85,131 @@ class App extends Component {
       <div className="App" >
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+          <p>hello</p>
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossOrigin="anonymous" />
         </header>
-          <div className="container">
-            <form>
-              <br />
-              <div className="row">
-                <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_1", e)} />
-                <div className="col-2" />
-                <input className="col-4" type="number" step="1" onChange={(e) => this.handleInputBrandValue("value_1", e)} />
-              </div>
-              <br />
-              <div className="row">
-                <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_2", e)} />
-                <div className="col-2" />
-                <input className="col-4" type="number" step="1" onChange={(e) => this.handleInputBrandValue("value_2", e)} />
-              </div>
-              <br />
-              <div className="row">
-                <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_3", e)} />
-                <div className="col-2" />
-                <input className="col-4" type="number" step="1" onChange={(e) => this.handleInputBrandValue("value_3", e)} />
-              </div>
-              <br />
-              <div className="row">
-                <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_4", e)} />
-                <div className="col-2" />
-                <input className="col-4" type="number" step="1" onChange={(e) => this.handleInputBrandValue("value_4", e)} />
-              </div>
-              <br />
-              <div className="row">
-                <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_5", e)} />
-                <div className="col-2" />
-                <input className="col-4" type="number" step="1" onChange={(e) => this.handleInputBrandValue("value_5", e)} />
-              </div>
-              <br />
-              <div className="row">
-                <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_6", e)} />
-                <div className="col-2" />
-                <input className="col-4" type="number" step="1" onChange={(e) => this.handleInputBrandValue("value_6", e)} />
-              </div>
-              <br />
-              <div className="row">
-                <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_7", e)} />
-                <div className="col-2" />
-                <input className="col-4" type="number" step="1" onChange={(e) => this.handleInputBrandValue("value_7", e)} />
-              </div>
-              <br />
-              <div className="row">
-                <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_8", e)} />
-                <div className="col-2" />
-                <input className="col-4" type="number" step="1" onChange={(e) => this.handleInputBrandValue("value_8", e)} />
-              </div>
-              <br />
-              <div className="row">
-                <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_9", e)} />
-                <div className="col-2" />
-                <input className="col-4" type="number" step="1" onChange={(e) => this.handleInputBrandValue("value_9", e)} />
-              </div>
-              <br />
-              <div className="row">
-                <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_10", e)} />
-                <div className="col-2" />
-                <input className="col-4" type="number" step="1" onChange={(e) => this.handleInputBrandValue("value_10", e)} />
-              </div>
-              <br />
-              <button className="button" onClick={this.saveFile}>Sauvegarder</button>
-            </form>
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossOrigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossOrigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossOrigin="anonymous"></script>
-          </div>
+        <div className="container">
+          <form>
+            <br />
+            <div className="row">
+            <button className="button" onClick={this.saveFile}>Sauvegarde</button>
+            </div>          
+            <br />
+            <div className="row">
+              <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_1", e)} />
+              <Button className="col-2" type="dashed" onClick={(e) => this.removeOne("value_1", e)}>
+                    <Icon type="minus" />
+              </Button>
+              <p className="col-2" type="dashed">{this.state.value_1}</p>
+              <Button className="col-2" type="dashed" onClick={(e) => this.addOne("value_1", e)}>
+                    <Icon type="plus" />
+              </Button>
+            </div>
+            <br />
+            <div className="row">
+            <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_2", e)} />
+              <Button className="col-2" type="dashed" onClick={(e) => this.removeOne("value_2", e)}>
+                    <Icon type="minus" />
+              </Button>
+              <p className="col-2" type="dashed">{this.state.value_2}</p>
+              <Button className="col-2" type="dashed" onClick={(e) => this.addOne("value_2", e)}>
+                    <Icon type="plus" />
+              </Button>
+            </div>
+            <br />
+            <div className="row">
+            <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_3", e)} />
+              <Button className="col-2" type="dashed" onClick={(e) => this.removeOne("value_3", e)}>
+                    <Icon type="minus" />
+              </Button>
+              <p className="col-2" type="dashed">{this.state.value_3}</p>
+              <Button className="col-2" type="dashed" onClick={(e) => this.addOne("value_3", e)}>
+                    <Icon type="plus" />
+              </Button>
+            </div>
+            <br />
+            <div className="row">
+            <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_4", e)} />
+              <Button className="col-2" type="dashed" onClick={(e) => this.removeOne("value_4", e)}>
+                    <Icon type="minus" />
+              </Button>
+              <p className="col-2" type="dashed">{this.state.value_4}</p>
+              <Button className="col-2" type="dashed" onClick={(e) => this.addOne("value_4", e)}>
+                    <Icon type="plus" />
+              </Button>
+            </div>
+            <br />
+            <div className="row">
+            <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_5", e)} />
+              <Button className="col-2" type="dashed" onClick={(e) => this.removeOne("value_5", e)}>
+                    <Icon type="minus" />
+              </Button>
+              <p className="col-2" type="dashed">{this.state.value_5}</p>
+              <Button className="col-2" type="dashed" onClick={(e) => this.addOne("value_5", e)}>
+                    <Icon type="plus" />
+              </Button>
+            </div>
+            <br />
+            <div className="row">
+            <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_6", e)} />
+              <Button className="col-2" type="dashed" onClick={(e) => this.removeOne("value_6", e)}>
+                    <Icon type="minus" />
+              </Button>
+              <p className="col-2" type="dashed">{this.state.value_6}</p>
+              <Button className="col-2" type="dashed" onClick={(e) => this.addOne("value_6", e)}>
+                    <Icon type="plus" />
+              </Button>
+            </div>
+            <br />
+            <div className="row">
+            <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_7", e)} />
+              <Button className="col-2" type="dashed" onClick={(e) => this.removeOne("value_7", e)}>
+                    <Icon type="minus" />
+              </Button>
+              <p className="col-2" type="dashed">{this.state.value_7}</p>
+              <Button className="col-2" type="dashed" onClick={(e) => this.addOne("value_7", e)}>
+                    <Icon type="plus" />
+              </Button>
+            </div>
+            <br />
+            <div className="row">
+            <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_8", e)} />
+              <Button className="col-2" type="dashed" onClick={(e) => this.removeOne("value_8", e)}>
+                    <Icon type="minus" />
+              </Button>
+              <p className="col-2" type="dashed">{this.state.value_8}</p>
+              <Button className="col-2" type="dashed" onClick={(e) => this.addOne("value_8", e)}>
+                    <Icon type="plus" />
+              </Button>
+            </div>
+            <br />
+            <div className="row">
+            <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_9", e)} />
+              <Button className="col-2" type="dashed" onClick={(e) => this.removeOne("value_9", e)}>
+                    <Icon type="minus" />
+              </Button>
+              <p className="col-2" type="dashed">{this.state.value_9}</p>
+              <Button className="col-2" type="dashed" onClick={(e) => this.addOne("value_9", e)}>
+                    <Icon type="plus" />
+              </Button>
+            </div>
+            <br />
+            <div className="row">
+            <input className="col-6" type="text" onChange={(e) => this.handleInputBrand("brand_10", e)} />
+              <Button className="col-2" type="dashed" onClick={(e) => this.removeOne("value_10", e)}>
+                    <Icon type="minus" />
+              </Button>
+              <p className="col-2" type="dashed">{this.state.value_10}</p>
+              <Button className="col-2" type="dashed" onClick={(e) => this.addOne("value_10", e)}>
+                    <Icon type="plus" />
+              </Button>
+            </div>
+            <br />
+          </form>
+          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossOrigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossOrigin="anonymous"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossOrigin="anonymous"></script>
+        </div>
       </div >
 
     );
